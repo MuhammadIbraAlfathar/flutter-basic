@@ -46,13 +46,29 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
       ),
-      body: Center(
-        child: Container(
-          height: 300,
-          color: const Color.fromARGB(255, 175, 76, 76),
-          child:
-              photo == null ? const SizedBox() : Image.file(File(photo!.path)),
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 300,
+                color: const Color.fromARGB(255, 175, 76, 76),
+                child: photo == null
+                    ? const SizedBox()
+                    : Image.file(File(photo!.path)),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text("Save To Gallery"),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
