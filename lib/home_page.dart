@@ -40,6 +40,16 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
       ),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        width: 300,
+        height: 300,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Text("Hello World"),
+      ),
     );
   }
 }
