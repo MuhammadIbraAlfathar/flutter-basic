@@ -3,6 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
+import 'package:flutter/rendering.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -13,6 +19,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   XFile? photo;
   final picker = ImagePicker();
+
+  final GlobalKey _globalKey = GlobalKey();
+
+  _saveLocalImage() async {
+    RenderRepaintBoundary boundary =
+        _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    ui.Image image = await boundary.toImage();
+    ByteData? byteData =
+        await (image.toByteData(format: ui.ImageByteFormat.png));
+    if (byteData != null) {
+      final result =
+          await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
+      print(result);
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("save successfuly to gallery")));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +75,16 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 300,
-                color: const Color.fromARGB(255, 175, 76, 76),
-                child: photo == null
-                    ? const SizedBox()
-                    : Image.file(File(photo!.path)),
+              RepaintBoundary(
+                key: _globalKey,
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 300,
+                  color: const Color.fromARGB(255, 175, 76, 76),
+                  child: photo == null
+                      ? const SizedBox()
+                      : Image.file(File(photo!.path)),
+                ),
               ),
             ],
           ),
@@ -65,7 +92,9 @@ class _HomePageState extends State<HomePage> {
             height: 16,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              _saveLocalImage();
+            },
             child: const Text("Save To Gallery"),
           ),
         ],
