@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const Scaffold(body: LayoutExample()),
+      home: const Scaffold(body: HomePage()),
     );
   }
 }
