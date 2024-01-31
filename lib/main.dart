@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,17 +30,15 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        primarySwatch: Colors.blue,
-        // useMaterial3: true,
+        // primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Jago Flutter"),
-          ),
-          body: const ColumnExample()),
+      home: const Scaffold(body: HomePage()),
     );
   }
 }
+
+// COLUMN
 
 class ColumnExample extends StatefulWidget {
   const ColumnExample({super.key});
@@ -74,6 +73,37 @@ class _ColumnExample extends State<ColumnExample> {
           )
         ],
       ),
+    );
+  }
+}
+
+// ROW
+class RowsExample extends StatefulWidget {
+  const RowsExample({super.key});
+
+  @override
+  State<RowsExample> createState() => _RowsExample();
+}
+
+class _RowsExample extends State<RowsExample> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: Colors.grey, borderRadius: BorderRadius.circular(12.0)),
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
+        ),
+        const Text(
+          "Detail",
+          style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }
