@@ -109,7 +109,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                                   height: 20,
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     ElevatedButton(
                                         onPressed: () {

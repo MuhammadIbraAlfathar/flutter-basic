@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widget_lesson/basic_form/dialog_widget.dart';
+import 'package:flutter_application_1/widget_lesson/basic_form/form_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const DialogWidget(),
+      home: const FormWidget(),
     );
   }
 }
