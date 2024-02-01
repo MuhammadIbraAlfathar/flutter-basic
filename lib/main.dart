@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widget_lesson/basic_layout/stack_widget.dart';
+import 'package:flutter_application_1/widget_lesson/basic_layout/wrap_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const StackWidget(),
+      home: WrapWidget(),
     );
   }
 }
